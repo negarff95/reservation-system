@@ -40,7 +40,7 @@ python manage.py loaddata infrastructure/fixture.json
 ```
 
 ### Docs
-- To access documentation, check docs directory.
+- To access documentation, check https://negarff95.github.io/reservation-system/.
 
 ### RestAPI PlayGround
 - To access the RestAPI playground, use the URL: host:port/playground/
