@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Django APIs Documentation &#8212; Reservation System 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Django Models Documentation" href="models.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="django-apis-documentation">
+<h1>Django APIs Documentation<a class="headerlink" href="#django-apis-documentation" title="Link to this heading">¶</a></h1>
+<section id="checkavailability-api">
+<h2>CheckAvailability API<a class="headerlink" href="#checkavailability-api" title="Link to this heading">¶</a></h2>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h3>
+<p>The <cite>CheckAvailability</cite> API provides an endpoint to check room availability for a specific listing within a specified date range, allowing users to verify room availability by providing details such as the number of rooms, listing ID, and start and end dates.</p>
+</section>
+<section id="endpoints">
+<h3>Endpoints<a class="headerlink" href="#endpoints" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Check Room Availability (GET)</strong>: Checks room availability for a listing within a specified date range.</p></li>
+</ul>
+</section>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><cite>num_rooms</cite> (integer): The number of rooms required.</p></li>
+<li><p><cite>listing_id</cite> (integer): The unique ID of the listing.</p></li>
+<li><p><cite>start_date</cite> (date): The start date for room reservation.</p></li>
+<li><p><cite>end_date</cite> (date): The end date for room reservation.</p></li>
+</ul>
+</section>
+<section id="response">
+<h3>Response<a class="headerlink" href="#response" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>200 OK</strong>: Rooms are available, returning a success status with room availability message.</p></li>
+<li><p><strong>404 Not Found</strong>: Listing not found, returning an error status with a message.</p></li>
+<li><p><strong>409 Conflict</strong>: Rooms are unavailable, returning an error status with an explanation for unavailability.</p></li>
+</ul>
+</section>
+</section>
+<section id="reservations-api">
+<h2>Reservations API<a class="headerlink" href="#reservations-api" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>Introduction<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>The <cite>Reservations</cite> API enables users to make reservations for a listing. It provides endpoints for creating reservations and checking room availability before making a reservation.</p>
+</section>
+<section id="id2">
+<h3>Endpoints<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Create Reservation (POST)</strong>: Creates a new reservation for a listing.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Parameters<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><cite>num_rooms</cite> (integer): The number of rooms required.</p></li>
+<li><p><cite>listing_id</cite> (integer): The unique ID of the listing.</p></li>
+<li><p><cite>start_date</cite> (date): The start date for room reservation.</p></li>
+<li><p><cite>end_date</cite> (date): The end date for room reservation.</p></li>
+<li><p><cite>name</cite> (string): The name of the customer making the reservation.</p></li>
+<li><p><cite>special_requests</cite> (string, optional): Special requests or notes from the customer.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Response<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>201 Created</strong>: Reservation successfully created, returning a success status with reservation details.</p></li>
+<li><p><strong>404 Not Found</strong>: Listing not found, returning an error status with a message.</p></li>
+<li><p><strong>409 Conflict</strong>: Rooms are unavailable, returning an error status with an explanation for unavailability.</p></li>
+<li><p><strong>400 Bad Request</strong>: Missing required entries, returning an error status with a message.</p></li>
+</ul>
+<p>This documentation provides a foundation for your Django models and APIs. You can expand on this base, include usage examples, request and response schemas, and authentication requirements to create more comprehensive documentation for your project.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Reservation System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="views.html">Django Views Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Django Models Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Django APIs Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#checkavailability-api">CheckAvailability API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reservations-api">Reservations API</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="models.html" title="previous chapter">Django Models Documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Negar Forouzandeh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/RestAPIs.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

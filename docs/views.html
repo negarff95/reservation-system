@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Django Views Documentation &#8212; Reservation System 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Django Models Documentation" href="models.html" />
+    <link rel="prev" title="Welcome to Reservation System’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="django-views-documentation">
+<h1>Django Views Documentation<a class="headerlink" href="#django-views-documentation" title="Link to this heading">¶</a></h1>
+<section id="reservationsreportview">
+<h2>ReservationsReportView<a class="headerlink" href="#reservationsreportview" title="Link to this heading">¶</a></h2>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h3>
+<p>The <cite>ReservationsReportView</cite> is a Django class-based view that provides an endpoint for generating a reservations report for a specific listing. It renders an HTML template to display information about the listing and its reservations.</p>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><cite>template_name</cite> (str): The name of the HTML template used to render the reservations report.</p></li>
+</ul>
+</section>
+<section id="methods">
+<h3>Methods<a class="headerlink" href="#methods" title="Link to this heading">¶</a></h3>
+</section>
+</section>
+<section id="get-self-request">
+<h2><cite>get(self, request)</cite><a class="headerlink" href="#get-self-request" title="Link to this heading">¶</a></h2>
+<p><strong>Description:</strong>
+This method handles GET requests and generates a reservations report for a specific listing.</p>
+<p><strong>Parameters:</strong>
+- <cite>request</cite> (HttpRequest): The HTTP request object.</p>
+<p><strong>Returns:</strong>
+- <cite>HttpResponse</cite>: The rendered HTML template containing the reservations report.</p>
+<p><strong>Behavior:</strong>
+1. Parse the <cite>listing</cite> parameter from the request’s GET parameters.
+2. Initialize an empty list <cite>exceptions</cite> to capture any exceptions.
+3. Initialize variables for <cite>listing</cite>, <cite>listing_id</cite>, <cite>listing_name</cite>, and <cite>reservations</cite> to <cite>None</cite>.
+4. Check if a <cite>listing</cite> parameter is provided.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If provided, attempt to parse it as an integer (<cite>listing_id</cite>).</p></li>
+<li><p>If parsing as an integer fails, assume <cite>listing</cite> is a string (<cite>listing_name</cite>).</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>Try to fetch the listing using the <cite>listing_id</cite> or <cite>listing_name</cite>. Handle exceptions if the listing is not found.</p></li>
+<li><p>If a valid listing is obtained:
+- Try to fetch the reservations associated with the listing.
+- Capture any exceptions and append them to the <cite>exceptions</cite> list.</p></li>
+<li><p>Render the HTML template, passing in the following context:
+- <cite>exceptions</cite>: A list of exceptions captured during the process.
+- <cite>listing</cite>: The listing object (if found).
+- <cite>reservations</cite>: The reservations associated with the listing (if found).</p></li>
+</ol>
+<p><strong>Usage:</strong>
+- Access the view by making a GET request to the corresponding URL endpoint.
+- Provide the <cite>listing</cite> parameter to specify the listing for which you want to generate the reservations report.</p>
+<p><strong>Template:</strong>
+The view uses the HTML template specified by the <cite>template_name</cite> attribute to render the reservations report. The template should include placeholders for displaying exceptions, listing information, and reservations.</p>
+<p><strong>Example URL Endpoint:</strong>
+- <cite>listing/reservations-report/?listing=123</cite></p>
+<p><strong>Response:</strong>
+The view renders an HTML page displaying the reservations report for the specified listing. It may include exceptions, listing details, and reservations, if available.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Reservation System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Django Views Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reservationsreportview">ReservationsReportView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-self-request"><cite>get(self, request)</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Django Models Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RestAPIs.html">Django APIs Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Reservation System’s documentation!</a></li>
+      <li>Next: <a href="models.html" title="next chapter">Django Models Documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Negar Forouzandeh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/views.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

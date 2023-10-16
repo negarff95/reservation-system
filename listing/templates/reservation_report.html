@@ -1,0 +1,82 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+</head>
+{% block head_title_tag %}<title>Reservation Report</title>{% endblock %}
+{% block body %}
+    <script src="{% static 'bootstrap/js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <h1>Reservation Report</h1>
+
+    <form method="get">
+        <label for="listing-input">Enter Listing Name or ID:</label>
+        <input type="text" id="listing-input" name="listing" required>
+        <button type="submit" class="btn btn-success">Generate Report</button>
+    </form>
+
+    {% if exceptions %}
+        <div class="alert-warning">
+            <h4>Warnings:</h4>
+            <ul>
+                {% for exception in exceptions %}
+                    <li>{{ exception }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if listing %}
+        <div class="container my-4">
+            <div class="card" style="border-color: green">
+                <div class="card-body">
+                    <p class="card-text"><strong>Listing Name:</strong> {{ listing.name }}</p>
+                    <p class="card-text"><strong>Address:</strong> {{ listing.address }}</p>
+                    <p class="card-text"><strong>Total Rooms:</strong> {{ listing.total_rooms }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% if reservations %}
+            <h6>Reservations:</h6>
+            <table class="table table-bordered">
+                <thead class="bg-success text-white">
+                <tr>
+                    <th>Reservation ID</th>
+                    <th>Guest Name</th>
+                    <th>Number Of Rooms</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.id }}</td>
+                        <td>{{ reservation.customer.username }}</td>
+                        <td>{{ reservation.num_rooms }}</td>
+                        <td>{{ reservation.start_date }}</td>
+                        <td>{{ reservation.end_date }}</td>
+                        <td style="color:
+                                {% if reservation.status == 'Pending' %} gray
+                                {% elif reservation.status == 'Confirmed' %} green
+                                {% elif reservation.status == 'Canceled' %} red
+                                {% else %} black
+                                {% endif %}">
+                            {{ reservation.status }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="text-black-50">
+                <p>No reservations found for this listing.</p>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="text-black-50">
+            <p>No listing found.</p>
+        </div>
+    {% endif %}
+{% endblock %}
