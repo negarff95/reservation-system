@@ -1,5 +1,7 @@
 import logging
 from drf_yasg.utils import swagger_auto_schema
+from datetime import date
+
 
 from rest_framework.views import APIView
 
@@ -31,6 +33,16 @@ class CheckAvailability(APIView):
 
         self.exception_data = {"status": 404, "message": "listing not found."}
         listing = Listing.objects.get(id=listing_id)
+
+        if type(start_date) == str:
+            start_date = date.fromisoformat(start_date)
+        if type(end_date) == str:
+            end_date = date.fromisoformat(end_date)
+
+        if start_date > end_date or start_date < date.today():
+            status = 409
+            message = "invalid start date and end date"
+            return JsonResponse(status=status, message=message)
 
         is_available, exception = listing.is_available(num_rooms, start_date, end_date)
 
